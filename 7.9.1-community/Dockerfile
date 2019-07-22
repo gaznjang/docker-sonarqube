@@ -54,6 +54,11 @@ RUN set -x \
     && rm sonarqube.zip* \
     && rm -rf $SONARQUBE_HOME/bin/*
 
+RUN set -x \
+    && cd $SONARQUBE_HOME/extensions/plugins \
+    && curl -o sonar-c-plugin.jar -fSL https://github.com/SonarOpenCommunity/sonar-cxx/releases/download/cxx-1.2.2/sonar-c-plugin-1.2.2.1653.jar \
+    && curl -o sonar-cxx-plugin.jar -fSL https://github.com/SonarOpenCommunity/sonar-cxx/releases/download/cxx-1.2.2/sonar-cxx-plugin-1.2.2.1653.jar
+
 VOLUME "$SONARQUBE_HOME/data"
 
 WORKDIR $SONARQUBE_HOME
